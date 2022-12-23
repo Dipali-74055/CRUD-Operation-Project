@@ -1,0 +1,48 @@
+<div class="container mt-5">
+
+  <!-- show success Msg -->
+
+<div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{successmsg}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
+
+    <table class="table table-bordered" >
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">CategoryId</th>
+            <th scope="col">CategoryName</th>
+            <th scope="col">ProductId</th>
+            <th scope="col">ProductName</th>
+            <th scope="col">Modification</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr *ngFor="let us of readData | paginate: { itemsPerPage: 10, currentPage: p }" >
+            <td>{{us.id}}</td>
+            <td>{{us.CategoryId}}</td>
+            <td>{{us.CategoryName}}</td>
+            <td>{{us.ProductId}}</td>
+            <td>{{us.ProductName}}</td>
+            
+            <td>
+              
+              <button class="btn btn-sm btn-danger" (click)="deleteID(us.id)" >Delete</button>
+              &nbsp;
+              <a   [routerLink]="['/create',us.id]"   class="btn btn-sm btn-success" >Update</a>
+              
+            </td>
+          </tr>
+          <tr>
+            
+        </tbody>
+      </table>
+
+      <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+
+</div>
